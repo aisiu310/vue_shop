@@ -1,164 +1,60 @@
 <template>
   <div class="con">
-    <ul class="conList">
-      <li class="conItem">
-          <img src="./images/shop/1.jpg" alt="">
+    <ul class="conList" v-if="shops.length>0">
+      <li class="conItem" v-for="(shop, index) in shops" :key="index" @click="$router.push('/shop')">
+          <img :src="'https://fuss10.elemecdn.com' + shop.image_path">
         <div class="conList_con">
           <div class="shop_title">
             <h4 class="shop_title_text">
-                锄禾日当午，汗滴禾下土
+                {{shop.name}}
             </h4>
             <ul class="shop_title_ul">
-              <li class="supports">保</li>
-              <li class="supports">准</li>
-              <li class="supports">票</li>
+              <li class="supports" v-for="(support, index) in shop.supports" :key="support._id">{{support.icon_name}}</li>
             </ul>
           </div>
           <div class="shop_rating">
             <div class="shop_rating_left">
-                <ul class="starList">
-                  <li class="starItem on"></li>
-                  <li class="starItem"></li>
-                  <li class="starItem"></li>
-                  <li class="starItem"></li>
-                  <li class="starItem"></li>
-                </ul>
-                <span class="starNum">4.5</span>
-                <div class="starText">月售106单</div>
+                <Star :score="shop.rating" :size="24"/>
+                <span class="starNum">{{shop.rating}}</span>
+                <div class="starText">月售{{shop.recent_order_num}}单</div>
             </div>
                 <div class="shop_rating_right">
-                  <span class="delivery_left">硅谷专送</span>
+                  <span class="delivery_left">{{shop.delivery_mode.text}}</span>
                   <span class="delivery_right">准时达</span>
                 </div>
           </div>
           <div class="shop_price">
-            <span>&yen;20元起送</span>
+            <span>&yen;{{shop.float_minimum_order_amount}}元起送</span>
             <span>/</span>
-            <span>配送费约&yen;5</span>
-          </div>
-        </div>
-
-      </li>
-      <li class="conItem">
-          <img src="./images/shop/2.jpg" alt="">
-        <div class="conList_con">
-          <div class="shop_title">
-            <h4 class="shop_title_text">
-                锄禾日当午，汗滴禾下土
-            </h4>
-            <ul class="shop_title_ul">
-              <li class="supports">保</li>
-              <li class="supports">准</li>
-              <li class="supports">票</li>
-            </ul>
-          </div>
-          <div class="shop_rating">
-            <div class="shop_rating_left">
-                <ul class="starList">
-                    <li class="starItem"></li>
-                    <li class="starItem"></li>
-                    <li class="starItem"></li>
-                    <li class="starItem"></li>
-                    <li class="starItem"></li>
-                  </ul>
-                  <span class="starNum">3.5</span>
-                  <div class="starText">月售106单</div>
-                </div>
-                <div class="shop_rating_right">
-                  <span class="delivery_left">硅谷专送</span>
-                  <span class="delivery_right">准时达</span>
-                </div>
-          </div>
-          <div class="shop_price">
-            <span>&yen;20元起送</span>
-            <span>/</span>
-            <span>配送费约&yen;5</span>
-          </div>
-        </div>
-      </li>
-      <li class="conItem">
-          <img src="./images/shop/3.jpg" alt="">
-        <div class="conList_con">
-          <div class="shop_title">
-            <h4 class="shop_title_text">
-                锄禾日当午，汗滴禾下土
-            </h4>
-            <ul class="shop_title_ul">
-              <li class="supports">保</li>
-              <li class="supports">准</li>
-              <li class="supports">票</li>
-            </ul>
-          </div>
-          <div class="shop_rating">
-            <div class="shop_rating_left">
-                <ul class="starList">
-                    <li class="starItem"></li>
-                    <li class="starItem"></li>
-                    <li class="starItem"></li>
-                    <li class="starItem"></li>
-                    <li class="starItem"></li>
-                  </ul>
-                  <span class="starNum">3.5</span>
-                  <div class="starText">月售106单</div>
-                </div>
-                <div class="shop_rating_right">
-                  <span class="delivery_left">硅谷专送</span>
-                  <span class="delivery_right">准时达</span>
-                </div>
-          </div>
-          <div class="shop_price">
-            <span>&yen;20元起送</span>
-            <span>/</span>
-            <span>配送费约&yen;5</span>
-          </div>
-        </div>
-      </li>
-      <li class="conItem">
-          <img src="./images/shop/4.jpg" alt="">
-        <div class="conList_con">
-          <div class="shop_title">
-            <h4 class="shop_title_text">
-                锄禾日当午，汗滴禾下土
-            </h4>
-            <ul class="shop_title_ul">
-              <li class="supports">保</li>
-              <li class="supports">准</li>
-              <li class="supports">票</li>
-            </ul>
-          </div>
-          <div class="shop_rating">
-            <div class="shop_rating_left">
-                <ul class="starList">
-                    <li class="starItem"></li>
-                    <li class="starItem"></li>
-                    <li class="starItem"></li>
-                    <li class="starItem"></li>
-                    <li class="starItem"></li>
-                  </ul>
-                  <span class="starNum">3.5</span>
-                  <div class="starText">月售106单</div>
-                </div>
-                <div class="shop_rating_right">
-                  <span class="delivery_left">硅谷专送</span>
-                  <span class="delivery_right">准时达</span>
-                </div>
-          </div>
-          <div class="shop_price">
-            <span>&yen;20元起送</span>
-            <span>/</span>
-            <span>配送费约&yen;5</span>
+            <span>配送费约&yen;{{shop.float_delivery_fee}}</span>
           </div>
         </div>
       </li>
     </ul>
+    <ul v-else>
+      <li>
+        <img src="./images/shop_back.svg" alt="back">
+      </li>
+      <li>
+        <img src="./images/shop_back.svg" alt="back">
+      </li>
+      <li>
+        <img src="./images/shop_back.svg" alt="back">
+      </li>
+      <li>
+        <img src="./images/shop_back.svg" alt="back">
+      </li>
+  </ul>
   </div>
 </template>
 <script>
+import { mapState } from 'vuex';
 export default {
-  data	() {
-    return {
-    }
-  }
+ computed: {
+   ...mapState({
+     shops: state => state.msite.shops
+   })
+ }
 }
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
@@ -214,21 +110,7 @@ export default {
             .shop_rating_left
               font-size 12px
               float left
-              .starList
-                float left
-                clearFix()
-                .starItem
-                  float left
-                  width 10px
-                  height 10px
-                  background-size 10px 10px
-                  margin-right 4px
-                  &.on
-                    bg_image('./images/stars/star24_on')
-                  &.half
-                    bg_image('./images/stars/star24_half')
-                  &.off
-                    bg_image('./images/stars/star24_off')
+
               .starNum
                 float left
                 margin-right 4px

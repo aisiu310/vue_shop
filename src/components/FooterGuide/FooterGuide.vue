@@ -1,5 +1,5 @@
 <template>
-  <footer v-show="$route.meta.showFooter">
+  <footer>
     <ul class="foorterList">
       <li class="foorterItem" :class="{on: $route.path==='/msite'}" @click="goTo('/msite')">
         <span><i class="iconfont icon-waimai"></i></span>

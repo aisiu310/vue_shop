@@ -29,14 +29,7 @@
       top 10px
       color #fff
       i
-        font-size 30px
-    .top-text
-      position: absolute
-      left 50%
-      top 50%
-      transform translate(-50%,-50%)
-      color #fff
-      font-size: 24px
+        font-size 25px
     .site
       width 50%
       position: absolute
@@ -45,21 +38,16 @@
       transform translate(-50%,-50%)
       color #fff
       margin-left: -5%;
+      text-align center
       .site-text
-        display block
-        font-size 24px
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        position: absolute
-        left 50%
-        top 50%
-        transform translate(-50%,-50%)
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
         color #fff
-        font-size: 24px
+        font-size: 20px
     .login
       position: absolute
-      right 45px
+      right 15px
       top 50%
       transform translateY(-50%)
       font-size 16px

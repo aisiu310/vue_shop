@@ -1,14 +1,21 @@
 <template>
   <div id="app">
     <router-view/>
-    <FooterGuide/>
+    <FooterGuide v-show="$route.meta.showFooter"/>
   </div>
 </template>
 <script>
-  import FooterGuide from './components/FooterGuide/FooterGuide.vue'
+  import FooterGuide from './components/FooterGuide/FooterGuide'
+
   export default {
+    async mounted () {
+      this.$store.dispatch('getAddress')
+      this.$store.dispatch('getUser')
+
+    },
     components: {
       FooterGuide
+
     }
   }
 </script>
